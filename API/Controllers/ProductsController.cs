@@ -29,7 +29,6 @@ namespace API.Controllers
             return CreateActionResult(CustomResponseDto<List<ProductListDto>>.Success(200, productsDtos));
         }
 
-
         [ServiceFilter(typeof(NotFoundFilter<Product>))]
         // GET /api/products/5
         [HttpGet("{id}")]
@@ -40,8 +39,6 @@ namespace API.Controllers
             return CreateActionResult(CustomResponseDto<ProductListDto>.Success(200, productsDto));
         }
 
-
-
         [HttpPost]
         public async Task<IActionResult> Save(ProductCreateDto productDto)
         {
@@ -49,7 +46,6 @@ namespace API.Controllers
             var productsDto = _mapper.Map<ProductCreateDto>(product);
             return CreateActionResult(CustomResponseDto<ProductCreateDto>.Success(201, productsDto));
         }
-
 
         [HttpPut]
         public async Task<IActionResult> Update(ProductUpdateDto productDto)
@@ -66,6 +62,5 @@ namespace API.Controllers
             await _service.RemoveAsync(product);
             return CreateActionResult(CustomResponseDto<NoContentDto>.Success(204));
         }
-
     }
 }

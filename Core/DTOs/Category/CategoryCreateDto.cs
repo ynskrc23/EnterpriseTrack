@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Core.Models
+namespace Core.DTOs.Category
 {
-    public class Category : BaseEntity
+    public class CategoryCreateDto : BaseDto
     {
         public string CategoryName { get; set; }
         public string Description { get; set; }
