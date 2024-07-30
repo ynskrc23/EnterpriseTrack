@@ -13,6 +13,15 @@ using Stripe;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Add services to the container.
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll",
+        builder => builder.AllowAnyOrigin()
+                          .AllowAnyMethod()
+                          .AllowAnyHeader());
+});
+
 // Servisleri DI konteynerine ekleyin
 builder.Services.AddScoped<IGenericRepository<Core.Models.Product>, GenericRepository<Core.Models.Product>>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
@@ -47,6 +56,10 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseStaticFiles(); // Bu satýr public dosyalarý servis eder
+app.UseRouting();
+
+app.UseCors("AllowAll");
 
 app.UseAuthorization();
 

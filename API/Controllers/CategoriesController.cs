@@ -40,18 +40,100 @@ namespace API.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Save(CategoryCreateDto categoryDto)
+        public async Task<IActionResult> Save([FromForm] IFormFile picture, [FromForm] CategoryCreateDto categoryDto)
         {
-            var category = await _service.AddAsync(_mapper.Map<Category>(categoryDto));
-            var categoriesDto = _mapper.Map<CategoryCreateDto>(category);
+            if (picture == null || picture.Length == 0)
+            {
+                return BadRequest("No image uploaded.");
+            }
+
+            // Validate file type if needed
+            var allowedExtensions = new[] { ".jpg", ".jpeg", ".png", ".gif" };
+            var extension = Path.GetExtension(picture.FileName).ToLowerInvariant();
+
+            if (!allowedExtensions.Contains(extension))
+            {
+                return BadRequest("Invalid file type.");
+            }
+
+            var uploadsFolder = Path.Combine("wwwroot", "Uploads", "Categories");
+            Directory.CreateDirectory(uploadsFolder);
+
+            // Generate a unique filename
+            var fileName = $"{Guid.NewGuid()}{extension}";
+            var filePath = Path.Combine(uploadsFolder, fileName);
+
+            try
+            {
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    await picture.CopyToAsync(stream);
+                }
+            }
+            catch (Exception ex)
+            {
+                // Log the error
+                return StatusCode(500, "Internal server error: " + ex.Message);
+            }
+
+            var category = _mapper.Map<Category>(categoryDto);
+            category.Picture = fileName; // Store the filename in the entity
+            var createdCategory = await _service.AddAsync(category);
+            var categoriesDto = _mapper.Map<CategoryCreateDto>(createdCategory);
+
             return CreateActionResult(CustomResponseDto<CategoryCreateDto>.Success(201, categoriesDto));
         }
 
-        [HttpPut]
-        public async Task<IActionResult> Update(CategoryUpdateDto categoryDto)
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Update(int id, [FromForm] IFormFile picture, [FromForm] CategoryUpdateDto categoryDto)
         {
-            await _service.UpdateAsync(_mapper.Map<Category>(categoryDto));
-            return CreateActionResult(CustomResponseDto<CategoryUpdateDto>.Success(204));
+            var category = await _service.GetByIdAsync(id);
+            if (category == null)
+            {
+                return NotFound("Category not found.");
+            }
+
+            if (picture != null && picture.Length > 0)
+            {
+                // Validate file type if needed
+                var allowedExtensions = new[] { ".jpg", ".jpeg", ".png", ".gif" };
+                var extension = Path.GetExtension(picture.FileName).ToLowerInvariant();
+
+                if (!allowedExtensions.Contains(extension))
+                {
+                    return BadRequest("Invalid file type.");
+                }
+
+                var uploadsFolder = Path.Combine("wwwroot", "Uploads", "Categories");
+                Directory.CreateDirectory(uploadsFolder);
+
+                // Generate a unique filename
+                var fileName = $"{Guid.NewGuid()}{extension}";
+                var filePath = Path.Combine(uploadsFolder, fileName);
+
+                try
+                {
+                    using (var stream = new FileStream(filePath, FileMode.Create))
+                    {
+                        await picture.CopyToAsync(stream);
+                    }
+                    category.Picture = fileName; // Store the filename in the entity
+                }
+                catch (Exception ex)
+                {
+                    // Log the error
+                    return StatusCode(500, "Internal server error: " + ex.Message);
+                }
+            }
+
+            category.CategoryName = categoryDto.CategoryName;
+            category.Description = categoryDto.Description;
+
+            await _service.UpdateAsync(category);
+
+            var categoriesDto = _mapper.Map<CategoryUpdateDto>(category);
+            return CreateActionResult(CustomResponseDto<CategoryUpdateDto>.Success(204, categoriesDto));
         }
 
         // DELETE api/products/5
