@@ -1,8 +1,8 @@
-using API.Filters;
 using Core.Models;
 using Core.Repositories;
 using Core.Services;
 using Core.UnitOfWorks;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Repository;
 using Repository.Repositories;
@@ -43,7 +43,6 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IService<Core.Models.Product>, Service.Services.ProductService>();
 builder.Services.AddScoped<IService<Core.Models.Category>, Service.Services.CategoryService>();
-builder.Services.AddScoped(typeof(NotFoundFilter<>));
 builder.Services.AddAutoMapper(typeof(MapProfile));
 
 var app = builder.Build();

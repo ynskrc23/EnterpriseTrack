@@ -1,5 +1,4 @@
-﻿using API.Filters;
-using AutoMapper;
+﻿using AutoMapper;
 using Core.DTOs;
 using Core.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -29,7 +28,6 @@ namespace API.Controllers
             return CreateActionResult(CustomResponseDto<List<CategoryListDto>>.Success(200, categoriesDtos));
         }
 
-        [ServiceFilter(typeof(NotFoundFilter<Category>))]
         // GET /api/categories/5
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
@@ -83,7 +81,6 @@ namespace API.Controllers
 
             return CreateActionResult(CustomResponseDto<CategoryCreateDto>.Success(201, categoriesDto));
         }
-
 
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(int id, [FromForm] IFormFile picture, [FromForm] CategoryUpdateDto categoryDto)
