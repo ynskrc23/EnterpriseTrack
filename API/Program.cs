@@ -26,9 +26,14 @@ builder.Services.AddCors(options =>
 builder.Services.AddScoped<IGenericRepository<Core.Models.Product>, GenericRepository<Core.Models.Product>>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<IProductService, Service.Services.ProductService>();
+
 builder.Services.AddScoped<IGenericRepository<Core.Models.Category>, GenericRepository<Core.Models.Category>>();
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 builder.Services.AddScoped<ICategoryService, Service.Services.CategoryService>();
+
+builder.Services.AddScoped<IGenericRepository<Core.Models.Supplier>, GenericRepository<Core.Models.Supplier>>();
+builder.Services.AddScoped<ISupplierRepository, SupplierRepository>();
+builder.Services.AddScoped<ISupplierService, Service.Services.SupplierService>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 // Add services to the container.
@@ -43,6 +48,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IService<Core.Models.Product>, Service.Services.ProductService>();
 builder.Services.AddScoped<IService<Core.Models.Category>, Service.Services.CategoryService>();
+builder.Services.AddScoped<IService<Core.Models.Supplier>, Service.Services.SupplierService>();
 builder.Services.AddAutoMapper(typeof(MapProfile));
 
 var app = builder.Build();
