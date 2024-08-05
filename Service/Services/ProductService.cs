@@ -22,5 +22,14 @@ namespace Service.Services
             _mapper = mapper;
             _productRepository = productRepository;
         }
+
+        public async Task<IEnumerable<Product>> GetAllAsync()
+        {
+            return await _productRepository.GetAllWithCategoryAndSupplierAsync();
+        }
+        public async Task<Product> GetByIdAsync(int id)
+        {
+            return await _productRepository.GetByIdWithCategoryAndSupplierAsync(id);
+        }
     }
 }

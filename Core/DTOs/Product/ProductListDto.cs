@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Core.DTOs.Category;
+using Core.DTOs.Supplier;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,5 +20,7 @@ namespace Core.DTOs.Product
         public short? UnitsOnOrder { get; set; }
         public short? ReorderLevel { get; set; }
         public int Discontinued { get; set; }
+        public CategoryListDto Category { get; set; }
+        public SupplierListDto Supplier { get; set; }
     }
 }
