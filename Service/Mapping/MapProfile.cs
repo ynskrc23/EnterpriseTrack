@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Core.DTOs.Category;
+using Core.DTOs.Customer;
 using Core.DTOs.Product;
 using Core.DTOs.Supplier;
 using Core.Models;
@@ -28,6 +29,10 @@ namespace Service.Mapping
             CreateMap<Supplier, SupplierCreateDto>().ReverseMap();
             CreateMap<SupplierUpdateDto, Supplier>();
             CreateMap<Supplier, SupplierListDto>();
+
+            CreateMap<Customer, CustomerCreateDto>().ReverseMap();
+            CreateMap<CustomerUpdateDto, Customer>();
+            CreateMap<Customer, CustomerListDto>();
         }
     }
 }
