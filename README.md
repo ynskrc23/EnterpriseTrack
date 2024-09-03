@@ -1,6 +1,6 @@
 # EnterpriseTrack
 
-# Projenin Fotoğrafları
+# Projenin Swagger Dökümanı Fotoğrafları
 
 ### Category API
 ![](https://github.com/ynskrc23/EnterpriseTrack/blob/master/image/category.PNG)
@@ -13,6 +13,9 @@
 
 ### Customer API
 ![](https://github.com/ynskrc23/EnterpriseTrack/blob/master/image/customer.PNG)
+
+### Shipper API
+![](https://github.com/ynskrc23/EnterpriseTrack/blob/master/image/shipper.PNG)
 
 ### Shcemas
 ![](https://github.com/ynskrc23/EnterpriseTrack/blob/master/image/schema.PNG)

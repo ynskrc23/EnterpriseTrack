@@ -2,6 +2,7 @@
 using Core.DTOs.Category;
 using Core.DTOs.Customer;
 using Core.DTOs.Product;
+using Core.DTOs.Shipper;
 using Core.DTOs.Supplier;
 using Core.Models;
 using System;
@@ -33,6 +34,10 @@ namespace Service.Mapping
             CreateMap<Customer, CustomerCreateDto>().ReverseMap();
             CreateMap<CustomerUpdateDto, Customer>();
             CreateMap<Customer, CustomerListDto>();
+
+            CreateMap<Shipper, ShipperCreateDto>().ReverseMap();
+            CreateMap<ShipperUpdateDto, Shipper>();
+            CreateMap<Shipper, ShipperListDto>();
         }
     }
 }

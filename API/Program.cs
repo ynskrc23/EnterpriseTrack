@@ -38,6 +38,10 @@ builder.Services.AddScoped<ISupplierService, Service.Services.SupplierService>()
 builder.Services.AddScoped<IGenericRepository<Core.Models.Customer>, GenericRepository<Core.Models.Customer>>();
 builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
 builder.Services.AddScoped<ICustomerService, Service.Services.CustomerService>();
+
+builder.Services.AddScoped<IGenericRepository<Core.Models.Shipper>, GenericRepository<Core.Models.Shipper>>();
+builder.Services.AddScoped<IShipperRepository, ShipperRepository>();
+builder.Services.AddScoped<IShipperService, Service.Services.ShipperService>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 // Add services to the container.
@@ -54,6 +58,7 @@ builder.Services.AddScoped<IService<Core.Models.Product>, Service.Services.Produ
 builder.Services.AddScoped<IService<Core.Models.Category>, Service.Services.CategoryService>();
 builder.Services.AddScoped<IService<Core.Models.Supplier>, Service.Services.SupplierService>();
 builder.Services.AddScoped<IService<Core.Models.Customer>, Service.Services.CustomerService>();
+builder.Services.AddScoped<IService<Core.Models.Shipper>, Service.Services.ShipperService>();
 builder.Services.AddAutoMapper(typeof(MapProfile));
 
 var app = builder.Build();
