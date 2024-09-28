@@ -1,4 +1,6 @@
 ﻿using Core.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Threading;
@@ -6,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Repository
 {
-    public class AppDbContext : DbContext
+    public class AppDbContext : IdentityDbContext<AppUser, AppRole,string>
     {
         public AppDbContext(DbContextOptions<AppDbContext> options)
             : base(options)
@@ -24,6 +26,8 @@ namespace Repository
         public DbSet<Territory> Territories { get; set; }
         public DbSet<EmployeeTerritory> EmployeeTerritories { get; set; }
         public DbSet<OrderDetail> OrderDetails { get; set; }
+        public DbSet<AppUser> AppUsers { get; set; }
+        public DbSet<AppRole> AppRoles { get; set; }
 
         public override int SaveChanges()
         {

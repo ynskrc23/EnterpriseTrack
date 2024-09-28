@@ -1,0 +1,72 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <h2 class="text-center mb-4">Login</h2>
+                <form action="/Admin/Account/Login" method="post">
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="Email" class="form-control" placeholder="Enter your email" required>
+                        <span class="text-danger" id="emailError"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="Password" class="form-control" placeholder="Enter your password" required>
+                        <span class="text-danger" id="passwordError"></span>
+                    </div>
+                    <div class="form-group form-check">
+                        <input type="checkbox" id="rememberMe" name="RememberMe" class="form-check-input">
+                        <label for="rememberMe" class="form-check-label">Remember Me</label>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Login</button>
+                </form>
+                <div class="text-center mt-3">
+                    <a href="/Admin/Account/Register">Don't have an account? Register here</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS ve Popper.js -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        // Basit doğrulama için JavaScript ekleyebilirsiniz
+        document.querySelector('form').onsubmit = function (event) {
+            let isValid = true;
+
+            // Form alanlarını kontrol et
+            const email = document.getElementById('email');
+            const password = document.getElementById('password');
+
+            // Hataları temizle
+            document.getElementById('emailError').innerText = '';
+            document.getElementById('passwordError').innerText = '';
+
+            // Gerekli alanların kontrolü
+            if (!email.value) {
+                document.getElementById('emailError').innerText = 'Email is required.';
+                isValid = false;
+            }
+            if (!password.value) {
+                document.getElementById('passwordError').innerText = 'Password is required.';
+                isValid = false;
+            }
+
+            if (!isValid) {
+                event.preventDefault(); // Formu gönderme
+            }
+        };
+    </script>
+</body>
+</html>

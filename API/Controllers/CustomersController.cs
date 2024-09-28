@@ -1,10 +1,8 @@
 ﻿using AutoMapper;
-using Core.DTOs.Category;
 using Core.DTOs;
 using Core.Services;
 using Microsoft.AspNetCore.Mvc;
 using Core.DTOs.Customer;
-using Core.DTOs.Product;
 using Core.Models;
 
 namespace API.Controllers

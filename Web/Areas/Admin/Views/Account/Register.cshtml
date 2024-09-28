@@ -1,0 +1,101 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <h2 class="text-center mb-4">Register</h2>
+                <form action="/Admin/Account/Register" method="post">
+                    <div class="form-group">
+                        <label for="firstName">First Name</label>
+                        <input type="text" id="firstName" name="FirstName" class="form-control" placeholder="Enter your first name" required>
+                        <span class="text-danger" id="firstNameError"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName">Last Name</label>
+                        <input type="text" id="lastName" name="LastName" class="form-control" placeholder="Enter your last name" required>
+                        <span class="text-danger" id="lastNameError"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="Email" class="form-control" placeholder="Enter your email" required>
+                        <span class="text-danger" id="emailError"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="Password" class="form-control" placeholder="Enter your password" required>
+                        <span class="text-danger" id="passwordError"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="confirmPassword">Confirm Password</label>
+                        <input type="password" id="confirmPassword" name="ConfirmPassword" class="form-control" placeholder="Confirm your password" required>
+                        <span class="text-danger" id="confirmPasswordError"></span>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Register</button>
+                </form>
+                <div class="text-center mt-3">
+                    <a href="/Admin/Account/Login">Already have an account? Login here</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS ve Popper.js -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        // Basit doğrulama için JavaScript ekleyebilirsiniz
+        document.querySelector('form').onsubmit = function (event) {
+            let isValid = true;
+
+            // Form alanlarını kontrol et
+            const firstName = document.getElementById('firstName');
+            const lastName = document.getElementById('lastName');
+            const email = document.getElementById('email');
+            const password = document.getElementById('password');
+            const confirmPassword = document.getElementById('confirmPassword');
+
+            // Hataları temizle
+            document.getElementById('firstNameError').innerText = '';
+            document.getElementById('lastNameError').innerText = '';
+            document.getElementById('emailError').innerText = '';
+            document.getElementById('passwordError').innerText = '';
+            document.getElementById('confirmPasswordError').innerText = '';
+
+            // Gerekli alanların kontrolü
+            if (!firstName.value) {
+                document.getElementById('firstNameError').innerText = 'First name is required.';
+                isValid = false;
+            }
+            if (!lastName.value) {
+                document.getElementById('lastNameError').innerText = 'Last name is required.';
+                isValid = false;
+            }
+            if (!email.value) {
+                document.getElementById('emailError').innerText = 'Email is required.';
+                isValid = false;
+            }
+            if (!password.value) {
+                document.getElementById('passwordError').innerText = 'Password is required.';
+                isValid = false;
+            }
+            if (password.value !== confirmPassword.value) {
+                document.getElementById('confirmPasswordError').innerText = 'Passwords do not match.';
+                isValid = false;
+            }
+
+            if (!isValid) {
+                event.preventDefault(); // Formu gönderme
+            }
+        };
+    </script>
+</body>
+</html>

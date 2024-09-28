@@ -133,7 +133,7 @@ namespace API.Controllers
             return CreateActionResult(CustomResponseDto<CategoryUpdateDto>.Success(204, categoriesDto));
         }
 
-        // DELETE api/products/5
+        // DELETE api/categories/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> Remove(int id)
         {
