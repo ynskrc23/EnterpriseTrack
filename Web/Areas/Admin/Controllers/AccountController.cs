@@ -17,7 +17,6 @@ namespace Web.Areas.Admin.Controllers
             _signInManager = signInManager;
         }
 
-        // Register GET metodu ekleyin
         [HttpGet]
         public IActionResult Register()
         {
@@ -54,7 +53,6 @@ namespace Web.Areas.Admin.Controllers
             return View(model);
         }
 
-        // Login GET metodu ekleyin
         [HttpGet]
         public IActionResult Login()
         {

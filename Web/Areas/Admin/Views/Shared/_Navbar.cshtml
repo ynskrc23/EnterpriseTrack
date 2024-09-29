@@ -5,12 +5,27 @@
                 aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between" id="navbarNavAltMarkup">
-            <ul class="navbar-nav flex-grow-1">
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <ul class="navbar-nav me-auto">
+                <!-- `me-auto` sýnýfý ekledik -->
                 <li class="nav-item">
                     <a class="nav-link text-white" aria-current="page" asp-controller="Dashboard" asp-action="Index">Dashboard</a>
                 </li>
-
+                <!-- User Menu -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle text-white" href="#" id="userDropdown" role="button"
+                       data-bs-toggle="dropdown" aria-expanded="false">
+                        User
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="userDropdown">
+                        <li>
+                            <a class="dropdown-item" asp-controller="User" asp-action="Add">Add User</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" asp-controller="User" asp-action="List">User List</a>
+                        </li>
+                    </ul>
+                </li>
             </ul>
             <ul class="navbar-nav">
                 <li class="nav-item">
