@@ -2,7 +2,7 @@
 
 namespace Core.Services
 {
-    public interface ISupplierService : IService<Supplier>
+    public interface ITerritoryService : IService<Territory>
     {
     }
 }

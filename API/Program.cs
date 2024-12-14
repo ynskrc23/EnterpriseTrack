@@ -3,14 +3,11 @@ using Core.Repositories;
 using Core.Services;
 using Core.UnitOfWorks;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Repository;
 using Repository.Repositories;
 using Repository.UnitOfWorks;
 using Service.Mapping;
-using Service.Services;
-using Stripe;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -44,6 +41,14 @@ builder.Services.AddScoped<ICustomerService, Service.Services.CustomerService>()
 builder.Services.AddScoped<IGenericRepository<Core.Models.Shipper>, GenericRepository<Core.Models.Shipper>>();
 builder.Services.AddScoped<IShipperRepository, ShipperRepository>();
 builder.Services.AddScoped<IShipperService, Service.Services.ShipperService>();
+
+builder.Services.AddScoped<IGenericRepository<Core.Models.Region>, GenericRepository<Core.Models.Region>>();
+builder.Services.AddScoped<IRegionRepository, RegionRepository>();
+builder.Services.AddScoped<IRegionService, Service.Services.RegionService>();
+
+builder.Services.AddScoped<IGenericRepository<Core.Models.Territory>, GenericRepository<Core.Models.Territory>>();
+builder.Services.AddScoped<ITerritoryRepository, TerritoryRepository>();
+builder.Services.AddScoped<ITerritoryService, Service.Services.TerritoryService>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 // Add services to the container.
@@ -73,6 +78,8 @@ builder.Services.AddScoped<IService<Core.Models.Category>, Service.Services.Cate
 builder.Services.AddScoped<IService<Core.Models.Supplier>, Service.Services.SupplierService>();
 builder.Services.AddScoped<IService<Core.Models.Customer>, Service.Services.CustomerService>();
 builder.Services.AddScoped<IService<Core.Models.Shipper>, Service.Services.ShipperService>();
+builder.Services.AddScoped<IService<Core.Models.Region>, Service.Services.RegionService>();
+builder.Services.AddScoped<IService<Core.Models.Territory>, Service.Services.TerritoryService>();
 builder.Services.AddAutoMapper(typeof(MapProfile));
 
 var app = builder.Build();
