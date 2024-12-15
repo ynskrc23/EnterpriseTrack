@@ -49,6 +49,10 @@ builder.Services.AddScoped<IRegionService, Service.Services.RegionService>();
 builder.Services.AddScoped<IGenericRepository<Core.Models.Territory>, GenericRepository<Core.Models.Territory>>();
 builder.Services.AddScoped<ITerritoryRepository, TerritoryRepository>();
 builder.Services.AddScoped<ITerritoryService, Service.Services.TerritoryService>();
+
+builder.Services.AddScoped<IGenericRepository<Core.Models.Employee>, GenericRepository<Core.Models.Employee>>();
+builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+builder.Services.AddScoped<IEmployeeService, Service.Services.EmployeeService>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 // Add services to the container.
@@ -80,6 +84,7 @@ builder.Services.AddScoped<IService<Core.Models.Customer>, Service.Services.Cust
 builder.Services.AddScoped<IService<Core.Models.Shipper>, Service.Services.ShipperService>();
 builder.Services.AddScoped<IService<Core.Models.Region>, Service.Services.RegionService>();
 builder.Services.AddScoped<IService<Core.Models.Territory>, Service.Services.TerritoryService>();
+builder.Services.AddScoped<IService<Core.Models.Employee>, Service.Services.EmployeeService>();
 builder.Services.AddAutoMapper(typeof(MapProfile));
 
 var app = builder.Build();
@@ -90,6 +95,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 
 app.UseHttpsRedirection();
 app.UseStaticFiles(); // Bu satýr public dosyalarý servis eder

@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Core.DTOs.Category;
 using Core.DTOs.Customer;
+using Core.DTOs.Employee;
 using Core.DTOs.Product;
 using Core.DTOs.Region;
 using Core.DTOs.Shipper;
@@ -45,6 +46,10 @@ namespace Service.Mapping
             CreateMap<Territory, TerritoryListDto>();
             CreateMap<Territory, TerritoryListDto>()
                .ForMember(dest => dest.Region, opt => opt.MapFrom(src => src.Region));
+
+            CreateMap<Employee, EmployeeCreateDto>().ReverseMap();
+            CreateMap<EmployeeUpdateDto, Employee>();
+            CreateMap<Employee, EmployeeListDto>();
         }
     }
 }

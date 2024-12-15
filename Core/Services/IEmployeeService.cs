@@ -2,7 +2,7 @@
 
 namespace Core.Services
 {
-    public interface ICategoryService : IService<Category>
+    public interface IEmployeeService : IService<Employee>
     {
     }
 }
