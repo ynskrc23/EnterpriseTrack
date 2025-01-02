@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Core.DTOs.OrderDetail;
 
-namespace Core.Models
+namespace Core.DTOs.Order
 {
-    public class Order : BaseEntity
+    public class OrderUpdateDto : BaseDto
     {
+        public int Id { get; set; }
         public int CustomerId { get; set; }
         public int? EmployeeId { get; set; }
         public int? ShipperId { get; set; }
@@ -22,11 +19,5 @@ namespace Core.Models
         public string ShipRegion { get; set; }
         public string ShipPostalCode { get; set; }
         public string ShipCountry { get; set; }
-
-        public Customer Customer { get; set; }
-        public Employee Employee { get; set; }
-        public Shipper Shipper { get; set; }
-
-        public List<OrderDetail> Details { get; set; }
     }
 }

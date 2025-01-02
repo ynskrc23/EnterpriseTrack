@@ -2,7 +2,7 @@
 
 namespace Core.Services
 {
-    public interface IProductService : IService<Product>
+    public interface IOrderService : IService<Order>
     {
     }
 }

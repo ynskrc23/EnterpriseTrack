@@ -53,6 +53,10 @@ builder.Services.AddScoped<ITerritoryService, Service.Services.TerritoryService>
 builder.Services.AddScoped<IGenericRepository<Core.Models.Employee>, GenericRepository<Core.Models.Employee>>();
 builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
 builder.Services.AddScoped<IEmployeeService, Service.Services.EmployeeService>();
+
+builder.Services.AddScoped<IGenericRepository<Core.Models.Order>, GenericRepository<Core.Models.Order>>();
+builder.Services.AddScoped<IOrderRepository, OrderRepository>();
+builder.Services.AddScoped<IOrderService, Service.Services.OrderService>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 // Add services to the container.
@@ -85,6 +89,7 @@ builder.Services.AddScoped<IService<Core.Models.Shipper>, Service.Services.Shipp
 builder.Services.AddScoped<IService<Core.Models.Region>, Service.Services.RegionService>();
 builder.Services.AddScoped<IService<Core.Models.Territory>, Service.Services.TerritoryService>();
 builder.Services.AddScoped<IService<Core.Models.Employee>, Service.Services.EmployeeService>();
+builder.Services.AddScoped<IService<Core.Models.Order>, Service.Services.OrderService>();
 builder.Services.AddAutoMapper(typeof(MapProfile));
 
 var app = builder.Build();

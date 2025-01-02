@@ -2,6 +2,8 @@
 using Core.DTOs.Category;
 using Core.DTOs.Customer;
 using Core.DTOs.Employee;
+using Core.DTOs.Order;
+using Core.DTOs.OrderDetail;
 using Core.DTOs.Product;
 using Core.DTOs.Region;
 using Core.DTOs.Shipper;
@@ -50,6 +52,17 @@ namespace Service.Mapping
             CreateMap<Employee, EmployeeCreateDto>().ReverseMap();
             CreateMap<EmployeeUpdateDto, Employee>();
             CreateMap<Employee, EmployeeListDto>();
+      
+            CreateMap<OrderCreateDto, Order>()
+                .ForMember(dest => dest.Details, opt => opt.MapFrom(src => src.Details));
+            CreateMap<OrderDetailDto, OrderDetail>();
+            CreateMap<Order, OrderCreateDto>()
+                .ForMember(dest => dest.Details, opt => opt.MapFrom(src => src.Details));
+            CreateMap<OrderDetail, OrderDetailDto>();
+            CreateMap<OrderUpdateDto, Order>().ReverseMap();
+            CreateMap<OrderDetailDto, OrderDetail>().ReverseMap();
+            CreateMap<Order, OrderListDto>();
+            CreateMap<OrderDetail, OrderDetailDto>();
         }
     }
 }
