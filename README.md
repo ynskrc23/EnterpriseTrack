@@ -1,4 +1,5 @@
-# Enterprise Track App
+# Proje Adı: Enterprise Track
+#### "Bu proje, kurumsal uygulamalar için verimli ve genişletilebilir bir altyapı sunmayı amaçlar. Kapsamlı CRUD operasyonları, kullanıcı yönetimi ve çok katmanlı mimari ile modern iş ihtiyaçlarını karşılar."
 
 ## Mimari Yapı ve Kullanılan Teknolojiler:
 
@@ -32,7 +33,7 @@
 #### HTTPS yönlendirme ve statik dosya servis etme özellikleri eklenmiş.
 
 
-# Projenin Swagger Dökümanı Fotoğrafları
+## Projenin Swagger Dökümanı Fotoğrafları
 
 ### Categories API
 ![](https://github.com/ynskrc23/EnterpriseTrack/blob/master/image/categories.PNG)
